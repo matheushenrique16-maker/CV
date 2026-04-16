@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matheus Henrique Bispo — CNC Machinist</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #0a0a0a; --surface: #111111; --border: #222222; --accent: #e8c547; --accent2: #4a90e2; --text: #e8e8e8; --muted: #666666; --mid: #999999; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; line-height: 1.6; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(232,197,71,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(232,197,71,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+  .container { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+  header { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); animation: fadeUp 0.8s ease both; }
+  .header-inner { display: flex; flex-direction: column; gap: 1.2rem; }
+  .tag-line { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 10vw, 6rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--text); }
+  h1 span { color: var(--accent); }
+  .headline { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--mid); letter-spacing: 0.05em; border-left: 2px solid var(--accent); padding-left: 0.8rem; max-width: 520px; }
+  .contact-bar { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 0.5rem; }
+  .contact-item { display: flex; align-items: center; gap: 0.4rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .contact-item:hover { color: var(--accent); }
+  .contact-item .dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  section { padding: 3rem 0; border-bottom: 1px solid var(--border); animation: fadeUp 0.8s ease both; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; color: var(--text); }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+  .profile-text { font-size: 0.9rem; color: var(--mid); line-height: 1.8; max-width: 680px; border-left: 2px solid var(--border); padding-left: 1.2rem; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; }
+  .skill-tag { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--mid); transition: all 0.2s; }
+  .skill-tag:hover { border-color: var(--accent); color: var(--text); background: #1a1800; }
+  .skill-tag::before { content: '▸'; color: var(--accent); font-size: 0.6rem; }
+  .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+  .exp-item { display: grid; grid-template-columns: 1fr; gap: 1rem; padding-left: 1.2rem; border-left: 2px solid var(--border); position: relative; transition: border-color 0.3s; }
+  .exp-item:hover { border-color: var(--accent); }
+  .exp-item::before { content: ''; position: absolute; left: -5px; top: 6px; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; transition: transform 0.2s; }
+  .exp-item:hover::before { transform: scale(1.4); }
+  .exp-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; }
+  .exp-role { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text); }
+  .exp-company { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--accent); }
+  .exp-period { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); margin-left: auto; }
+  .exp-location { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); padding: 2px 6px; border: 1px solid var(--border); border-radius: 3px; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .exp-bullets li { font-size: 0.83rem; color: var(--mid); padding-left: 1rem; position: relative; line-height: 1.6; }
+  .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--border); font-size: 0.7rem; }
+  .edu-list { display: flex; flex-direction: column; gap: 1rem; }
+  .edu-item { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; padding: 0.8rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; transition: border-color 0.2s; }
+  .edu-item:hover { border-color: var(--accent); }
+  .edu-title { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+  .edu-inst { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent); }
+  .lang-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .lang-item { flex: 1; min-width: 160px; padding: 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; }
+  .lang-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.05em; color: var(--text); display: block; margin-bottom: 0.3rem; }
+  .lang-level { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; }
+  .lang-bar { height: 2px; background: var(--border); margin-top: 0.6rem; border-radius: 1px; overflow: hidden; }
+  .lang-fill { height: 100%; background: var(--accent); border-radius: 1px; animation: fillBar 1.5s ease both; animation-delay: 0.8s; }
+  footer { padding: 2rem 0; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fillBar { from { width: 0; } }
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.3s; }
+  section:nth-child(5) { animation-delay: 0.4s; }
+  section:nth-child(6) { animation-delay: 0.5s; }
+  @media (max-width: 600px) { header { padding: 2.5rem 0 2rem; } .contact-bar { gap: 0.8rem; } .exp-period { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="header-inner">
+      <span class="tag-line">CNC Machinist · High-Precision Manufacturing</span>
+      <h1>Matheus<br><span>Henrique</span><br>Bispo</h1>
+      <p class="headline">3–5 Axis Milling · Cylindrical Grinding · Aerospace & Medical · EU Work Authorised</p>
+      <div class="contact-bar">
+        <a href="mailto:matheushenrique_16@hotmail.com" class="contact-item"><span class="dot"></span>matheushenrique_16@hotmail.com</a>
+        <a href="tel:+353862706441" class="contact-item"><span class="dot"></span>+353 86 270 6441</a>
+        <span class="contact-item"><span class="dot"></span>Limerick, Ireland</span>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="section-header"><span class="section-num">01</span><h2>Profile</h2><div class="section-line"></div></div>
+    <p class="profile-text">CNC Machinist specialising in 3–5 axis milling and cylindrical grinding within high-precision manufacturing environments — aerospace and medical sectors. Strong experience in full machine setup, tool presetting, offset optimisation and first-piece inspection. Hands-on experience with Studer S31 cylindrical grinding machines, including setup and programming, with formal training completed in Switzerland. Solid background in injection mould tooling (3+ years), with expertise in assembly, fitting and adjustment. Focused on quality, efficiency and continuous improvement.</p>
+  </section>
+  <section>
+    <div class="section-header"><span class="section-num">02</span><h2>Technical Skills</h2><div class="section-line"></div></div>
+    <div class="skills-grid">
+      <div class="skill-tag">CNC Milling (3–5 Axis)</div>
+      <div class="skill-tag">CNC Cylindrical Grinding</div>
+      <div class="skill-tag">Studer S31 Setup & Programming</div>
+      <div class="skill-tag">Machine Setup & Tool Presetting</div>
+      <div class="skill-tag">Offset Optimisation</div>
+      <div class="skill-tag">Fanuc Controls</div>
+      <div class="skill-tag">Heidenhain (Basic)</div>
+      <div class="skill-tag">Technical Drawing (GD&T)</div>
+      <div class="skill-tag">Precision Measurement</div>
+      <div class="skill-tag">First-Piece Inspection</div>
+      <div class="skill-tag">Injection Mould Assembly</div>
+      <div class="skill-tag">Aerospace & Medical Standards</div>
+    </div>
+  </section>
+  <section>
+    <div class="section-header"><span class="section-num">03</span><h2>Work Experience</h2><div class="section-line"></div></div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-meta">
+          <span class="exp-role">CNC Operator & Setter</span>
+          <span class="exp-company">Shannon Precision Engineering</span>
+          <span class="exp-location">Ireland</span>
+          <span class="exp-period">2022 — Present</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Operating and setting CNC milling machines (3–5 axis) in high-precision environments</li>
+          <li>Performing full machine setups including tooling and offsets</li>
+          <li>First-piece inspection and quality control to tight tolerances</li>
+          <li>Working with Fanuc controls in regulated aerospace and medical environments</li>
+          <li>Operating CNC cylindrical grinding (Studer S31), including full setup and basic programming</li>
+          <li>Completed manufacturer training at Studer, Switzerland</li>
+          <li>Ensuring high quality standards and process efficiency in daily production</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <span class="exp-role">Junior Bench Fitter</span>
+          <span class="exp-company">Digimold</span>
+          <span class="exp-location">Brazil</span>
+          <span class="exp-period">2018 — 2021</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Full assembly of plastic injection moulds from initial components to final fitting</li>
+          <li>Maintenance, repair and fine adjustments to tooling</li>
+          <li>Technical drawing interpretation (2D/3D)</li>
+          <li>Support to toolroom operations ensuring production readiness</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <span class="exp-role">CNC Machine Operator</span>
+          <span class="exp-company">Toyo Matic Aerospace</span>
+          <span class="exp-location">Brazil</span>
+          <span class="exp-period">2014 — 2017</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Operated CNC machining centres (3–5 axis) producing aerospace components</li>
+          <li>Experience with Fanuc, HAAS, Heidenhain, Siemens and Mazatrol controls</li>
+          <li>Exposure to basic CNC programming (Fanuc)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="section-header"><span class="section-num">04</span><h2>Education & Training</h2><div class="section-line"></div></div>
+    <div class="edu-list">
+      <div class="edu-item"><span class="edu-title">StuderWIN Basic Training</span><span class="edu-inst">STUDER — Switzerland</span></div>
+      <div class="edu-item"><span class="edu-title">Injection Mould Toolmaker</span><span class="edu-inst">SENAI — Brazil</span></div>
+      <div class="edu-item"><span class="edu-title">CNC Machining Centre Operation & Programming (3-Axis Milling)</span><span class="edu-inst">SENAI — Brazil</span></div>
+      <div class="edu-item"><span class="edu-title">Mechanical Drafting (Technical Drawing)</span><span class="edu-inst">SENAI — Brazil</span></div>
+      <div class="edu-item"><span class="edu-title">Conventional Machining</span><span class="edu-inst">SENAI — Brazil</span></div>
+    </div>
+  </section>
+  <section>
+    <div class="section-header"><span class="section-num">05</span><h2>Languages</h2><div class="section-line"></div></div>
+    <div class="lang-grid">
+      <div class="lang-item"><span class="lang-name">Portuguese</span><span class="lang-level">NATIVE</span><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div></div>
+      <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">INTERMEDIATE</span><div class="lang-bar"><div class="lang-fill" style="width:60%"></div></div></div>
+      <div class="lang-item"><span class="lang-name">Spanish</span><span class="lang-level">INTERMEDIATE</span><div class="lang-bar"><div class="lang-fill" style="width:55%"></div></div></div>
+    </div>
+  </section>
+  <footer>Matheus Henrique Bispo · Limerick, Ireland · EU Work Authorised</footer>
+</div>
+</body>
+</html>
